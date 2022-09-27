@@ -1,4 +1,6 @@
+import { CookBookContextService } from './services/cook-book-context.service';
 import { Component } from '@angular/core';
+import { from, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cookbook';
+  data: Observable<any>;
+  constructor(private context: CookBookContextService) {
+    this.data = from(this.context.getRecipes())
+  }
 }
